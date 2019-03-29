@@ -64,20 +64,3 @@ Flutter Multi Image Picker is an [emailware](https://en.wiktionary.org/wiki/emai
 This software uses the following open source packages:
 
 - [BSImagePicker](https://github.com/mikaoj/BSImagePicker) - iOS
-- [Matisse](https://github.com/zhihu/Matisse) - Android
-
-## Related
-
-[image_picker](https://pub.dartlang.org/packages/image_picker) - Official Flutter image picker plugin
-
-## Support
-
-<a href="https://www.buymeacoffee.com/Sh1d0w" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-
-## License
-
-MIT
-
----
-> GitHub [@Sh1d0w](https://github.com/Sh1d0w) &nbsp;&middot;&nbsp;
-> Twitter [@RadoslavVitanov](http://twitter.com/RadoslavVitanov)
