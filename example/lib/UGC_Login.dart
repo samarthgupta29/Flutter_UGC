@@ -8,6 +8,7 @@ import 'package:multi_image_picker_example/requestLoginAPI.dart';
 import 'package:multi_image_picker_example/platformScaffold.dart';
 import 'package:multi_image_picker_example/basicDrawer.dart';
 import 'UGC_Onboarding.dart';
+import 'package:multi_image_picker_example/requestLoginAPI.dart';
 
 void main() {
   runApp(MyAppThree());
@@ -112,22 +113,34 @@ class _UGC_LoginState extends State<UGC_Login> {
                           elevation: 7.0,
                           child: InkWell(
                             onTap: () {
-                              print("tapped");
-                              _scaffoldKey.currentState
-                                  .showSnackBar(new SnackBar(
-                                      duration: Duration(seconds: 1),
-                                      content: new Text(
-                                        "Processing Login...",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500),
-                                      )));
-                              requestLoginAPI(
-                                  context,
-                                  _userNameController.text,
-                                  _passwordController.text,
-                                  client_id,
-                                  client_secret,
-                                  grant_type);
+                              if(_userNameController.text.isNotEmpty && _passwordController.text.isNotEmpty){
+                                _scaffoldKey.currentState
+                                    .showSnackBar(new SnackBar(
+                                    duration: Duration(seconds: 1),
+                                    content: new Text(
+                                      "Processing Login...",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    )));
+                                requestLoginAPI(
+                                    context,
+                                    _userNameController.text,
+                                    _passwordController.text,
+                                    client_id,
+                                    client_secret,
+                                    grant_type);
+                              }
+                              else{
+                                _scaffoldKey.currentState
+                                    .showSnackBar(new SnackBar(
+                                    duration: Duration(seconds: 3),
+                                    content: new Text(
+                                      "Username & Password Cannot Be Empty",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    )));
+                              }
+
                             },
                             child: Center(
                               child: Text(
