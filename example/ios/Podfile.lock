@@ -5,13 +5,16 @@ PODS:
     - BSImageView (= 1.0.2)
   - BSImageView (1.0.2)
   - Flutter (1.0.0)
-  - multi_image_picker (3.0.21):
+  - multi_image_picker (3.0.22):
     - BSImagePicker (~> 2.9.0)
+    - Flutter
+  - shared_preferences (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios`)
   - multi_image_picker (from `.symlinks/plugins/multi_image_picker/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -24,14 +27,17 @@ EXTERNAL SOURCES:
     :path: ".symlinks/flutter/ios"
   multi_image_picker:
     :path: ".symlinks/plugins/multi_image_picker/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
   BSGridCollectionViewLayout: 3e6f23b3a2b4f0ca9afae09ca01389d1057f7b32
   BSImagePicker: 553707de1adaad42eac252e0b84d20dbdba83fe9
   BSImageView: ab22ff8cae61f1ae17a3c9efeeb216af3cf84a09
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  multi_image_picker: 2eb1000026a1acadeb58d37e87b81c62abda73e7
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  multi_image_picker: cd22fe1ca5298d6b7f0aaec7ff5b0a806f0537cb
+  shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
 
 PODFILE CHECKSUM: 9d1304459c9b2a5e72e756c28173c2289a3b25f9
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
