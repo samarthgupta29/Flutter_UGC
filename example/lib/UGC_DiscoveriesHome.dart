@@ -27,10 +27,12 @@ class UGC_DiscoveriesHome extends StatefulWidget {
 
 class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String url = "http://testapi.lbb.in:4000/panther/discoveries";
+  //String url = "http://testapi.lbb.in:4000/panther/discoveries?search_by_author=5c6fefa5f6479945b8f6a442";
   List data1;
   Future<String> makeRequest() async {
-    var response = await http.get(Uri.encodeFull(url));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var response = await http.get(Uri.encodeFull(
+        "http://testapi.lbb.in:4000/panther/discoveries?search_by_author=${prefs.getString("userMongoId")}"));
 
     setState(() {
       var extractData = json.decode(response.body);
@@ -48,7 +50,10 @@ class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
 
   void get _displaySnackBar {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: new Text("Please Wait While Discoveries Are Being Fetched...",style: TextStyle(fontWeight: FontWeight.w500),),
+      content: new Text(
+        "Please Wait While Discoveries Are Being Fetched...",
+        style: TextStyle(fontWeight: FontWeight.w500),
+      ),
       duration: Duration(seconds: 2),
     ));
   }

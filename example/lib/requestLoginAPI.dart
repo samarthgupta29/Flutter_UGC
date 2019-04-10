@@ -18,7 +18,7 @@ Future requestLoginAPI(BuildContext context, String username, String password,
     'client_id': "android",
     'client_secret':
         "4979c84882e1b78f36ca3eaf5daa26b2bd070d03d547bff572ad701ab445622b",
-    'grant_type': "password"
+    'grant_type': "password"                                                                                                                                                                                                    
   };
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -28,7 +28,7 @@ Future requestLoginAPI(BuildContext context, String username, String password,
     body: body,
   );
 
-  if (response.statusCode == 200) {
+  if (response.statusCode == 200) {                                                                                                                                   
     print("Successful Login");
     final responseJson = json.decode(response.body);
     prefs.setString("auth_token", responseJson["access_token"]);

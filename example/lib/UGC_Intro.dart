@@ -142,6 +142,7 @@ class UGC_Intro extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
+                      print("BUTTON TAPPED");
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
