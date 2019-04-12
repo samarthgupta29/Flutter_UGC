@@ -9,7 +9,7 @@ import 'UGC_DiscoveriesHome.dart';
 
 Future requestLoginAPI(BuildContext context, String username, String password,
     String client_id, String client_secret, String grant_type) async {
-  final url = "http://testapi.lbb.in:4000/auth/oauth/token";
+  final url = "http://testapi.lbb.in:3000/auth/oauth/token";
 
   ///TODO - Use Model Class
   Map body = {
@@ -27,6 +27,8 @@ Future requestLoginAPI(BuildContext context, String username, String password,
     url,
     body: body,
   );
+
+  print("LOGIN RESPONSE CODE : ${response.statusCode}");
 
   if (response.statusCode == 200) {                                                                                                                                   
     print("Successful Login");

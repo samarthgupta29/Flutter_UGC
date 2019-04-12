@@ -32,7 +32,7 @@ class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
   Future<String> makeRequest() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var response = await http.get(Uri.encodeFull(
-        "http://testapi.lbb.in:4000/panther/discoveries?search_by_author=${prefs.getString("userMongoId")}"));
+        "http://testapi.lbb.in:3000/panther/discoveries?search_by_author=${prefs.getString("userMongoId")}"));
 
     setState(() {
       var extractData = json.decode(response.body);
@@ -67,7 +67,7 @@ class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
       child: new Scaffold(
           key: _scaffoldKey,
           appBar: AppBar(
-            title: new Text("Discoveries"),
+            title: new Text("Your Discoveries"),
             centerTitle: true,
             backgroundColor: Colors.teal,
           ),
@@ -92,7 +92,6 @@ class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
                   leading: CircleAvatar(
                     backgroundColor: Colors.amber,
                   ),
-                  trailing: new Text(data1[i]['userName']),
                 );
               } else if (data1[i]['flag'].toString().contains("Done")) {
                 return ListTile(
@@ -102,7 +101,6 @@ class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
                   leading: CircleAvatar(
                     backgroundColor: Colors.green,
                   ),
-                  trailing: new Text(data1[i]['userName']),
                 );
               }
             },

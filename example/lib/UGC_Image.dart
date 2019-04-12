@@ -11,6 +11,7 @@ import 'package:multi_image_picker/asset.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' show utf8, json;
 import 'package:multi_image_picker_example/globallist.dart';
+import 'sendPostAPI.dart';
 
 void main() {
   runApp(UGC_Image1());
@@ -26,6 +27,8 @@ class UGC_Image1 extends StatelessWidget {
   }
 }
 
+String dropdownValue = 'Family';
+
 class UGC_Image extends StatefulWidget {
   @override
   _UGC_ImageState createState() => new _UGC_ImageState();
@@ -36,6 +39,12 @@ class _UGC_ImageState extends State<UGC_Image> {
   String _accessToken = "";
   List<Asset> images = List<Asset>();
   String _error = 'No Error Dectected';
+  final TextEditingController _TitleOfPostController = TextEditingController();
+  final TextEditingController _PlaceController = TextEditingController();
+  final TextEditingController _AwesomeController = TextEditingController();
+  final TextEditingController _BetterController = TextEditingController();
+  final TextEditingController _CostController = TextEditingController();
+  final TextEditingController _GoWithController = TextEditingController();
 
   @override
   void initState() {
@@ -61,7 +70,6 @@ class _UGC_ImageState extends State<UGC_Image> {
           asset,
           key: UniqueKey(),
         );
-
       }),
     );
   }
@@ -134,12 +142,186 @@ class _UGC_ImageState extends State<UGC_Image> {
             child: Text("Pick images"),
             onPressed: loadAssets,
           ),
-          Expanded(
+          SizedBox(
+            height: 150,
             child: buildGridView(),
+          ),
+          Expanded(
+            child: new Container(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  child: ListView(
+                    children: <Widget>[
+                      new ListTile(
+                        leading: const Icon(
+                          Icons.title,
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: new TextFormField(
+                            controller: _TitleOfPostController,
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            decoration: new InputDecoration(
+                                labelText: "Title of the Post",
+                                border: OutlineInputBorder()),
+                            maxLines: null,
+                          ),
+                        ),
+                      ),
+                      new ListTile(
+                        leading: const Icon(
+                          Icons.place,
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: new TextFormField(
+                            controller: _PlaceController,
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            decoration: new InputDecoration(
+                                labelText: "Where Did You FInd This?",
+                                border: OutlineInputBorder()),
+                            maxLines: null,
+                          ),
+                        ),
+                      ),
+                      new ListTile(
+                        leading: const Icon(
+                          Icons.mood,
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: new TextFormField(
+                            controller: _AwesomeController,
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            decoration: new InputDecoration(
+                                labelText: "What Makes It Awesome?",
+                                border: OutlineInputBorder()),
+                            maxLines: null,
+                          ),
+                        ),
+                      ),
+                      new ListTile(
+                        leading: const Icon(
+                          Icons.mood_bad,
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: new TextFormField(
+                            controller: _BetterController,
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            decoration: new InputDecoration(
+                                labelText: "What Could Be Better?",
+                                border: OutlineInputBorder()),
+                            maxLines: null,
+                          ),
+                        ),
+                      ),
+                      new ListTile(
+                        leading: const Icon(
+                          Icons.monetization_on,
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: new TextFormField(
+                            keyboardType: TextInputType.number,
+                            controller: _CostController,
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            decoration: new InputDecoration(
+                                labelText: "How Much Did It Cost?",
+                                border: OutlineInputBorder()),
+                            maxLines: null,
+                          ),
+                        ),
+                      ),
+                      new Container(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 73.0),
+                          child: new Text(
+                            "Best To Go With?",
+                            style: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                      new ListTile(
+                        leading: const Icon(
+                          Icons.people,
+                        ),
+                        title: new DropdownButton<String>(
+                          isDense: true,
+                          isExpanded: true,
+                          value: dropdownValue,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              dropdownValue = newValue;
+                            });
+                          },
+                          items: <String>[
+                            'Family',
+                            'Big Group',
+                            'Bae',
+                            'Kids',
+                            'Pets'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
+                        child: Container(
+                          height: 65.0,
+                          child: RaisedButton(
+                            onPressed: () {
+                              print("Tapped POST");
+                              sendPostAPI(
+                                  context,
+                                  _TitleOfPostController.text,
+                                  _PlaceController.text,
+                                  _AwesomeController.text,
+                                  _BetterController.text,
+                                  _CostController.text,
+                                  dropdownValue);
+                            },
+                            child: Text("Post On LBB",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 22.0)),
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),
-      floatingActionButton: new Container(
+      /*floatingActionButton: new Container(
               height: 70.0,
               width: 70.0,
               child: FittedBox(
@@ -156,7 +338,7 @@ class _UGC_ImageState extends State<UGC_Image> {
                       child: new Icon(Icons.forward)),
                 ),
               ),
-            ),
+            ),*/
     );
   }
 }
