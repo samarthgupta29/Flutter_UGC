@@ -32,7 +32,7 @@ class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
   Future<String> makeRequest() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var response = await http.get(Uri.encodeFull(
-        "http://testapi.lbb.in:3000/panther/discoveries?search_by_author=${prefs.getString("userMongoId")}"));
+        "http://testapi.lbb.in:4000/panther/discoveries?search_by_author=${prefs.getString("userMongoId")}"));
 
     setState(() {
       var extractData = json.decode(response.body);
@@ -76,7 +76,7 @@ class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                      maintainState: false,
+                      //maintainState: false,
                       builder: (context) => new UGC_Image()));
             },
             child: Icon(Icons.add),

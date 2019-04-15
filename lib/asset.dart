@@ -23,6 +23,8 @@ class Asset {
   /// Holds the original image data after it is requested
   ByteData _imageData;
 
+  //bool flag=false;
+
   Asset(
     this._identifier,
     this._name,
@@ -64,6 +66,10 @@ class Asset {
     return _originalWidth < _originalHeight;
   }
 
+  /*bool get isUploaded{
+    return flag=true;
+  }*/
+
   /// Returns the original image data
   ByteData get imageData {
     return _imageData;
@@ -78,6 +84,13 @@ class Asset {
   String get name {
     return _name;
   }
+
+  /*void imageUploaded(){
+    flag=true;
+  }*/
+  /*bool get flagStatus {
+    return flag;
+  }*/
 
   /// Releases the thumb data.
   ///
@@ -96,6 +109,13 @@ class Asset {
   void releaseOriginal() {
     _imageData = null;
   }
+
+  /*bool setImageUploaded(){
+    return true;
+  }
+  bool setImageNotUploaded(){
+    return false;
+  }*/
 
   /// Releases both the thumb and original image data.
   ///

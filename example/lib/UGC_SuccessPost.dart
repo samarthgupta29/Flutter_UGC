@@ -32,7 +32,7 @@ class _UGC_SuccessPostState extends State<UGC_SuccessPost>
     finalData.clear();
     super.initState();
     animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 4000));
+        vsync: this, duration: Duration(milliseconds: 500));
     animation =
         Tween<double>(begin: 20.0, end: 100.0).animate(animationController);
     animation.addListener(() {
@@ -71,14 +71,19 @@ class _UGC_SuccessPostState extends State<UGC_SuccessPost>
                 ),
               ),
             ),
-            /*Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 25.0),
               child: new Container(
-                child: new Text(
-                  "Back To Discoveries...",style:TextStyle(color: Colors.blueAccent,decoration: TextDecoration.underline),
+                child: InkWell(
+                  onTap: (){
+                    Navigator.push(context, new MaterialPageRoute(builder: (context)=>new UGC_DiscoveriesHome()));
+                  },
+                  child: new Text(
+                    "Back To Discoveries...",style:TextStyle(color: Colors.blueAccent,decoration: TextDecoration.underline),
+                  ),
                 ),
               ),
-            ),*/
+            ),
 
           ],
         ),

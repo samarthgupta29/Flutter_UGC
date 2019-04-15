@@ -7,10 +7,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' show utf8, json;
 import 'package:multi_image_picker_example/globallist.dart';
+import 'dart:async';
+
 
 class AssetView extends StatefulWidget {
   final int _index;
   final Asset _asset;
+
+
 
   AssetView(this._index, this._asset, {Key key}) : super(key: key);
 
@@ -18,12 +22,12 @@ class AssetView extends StatefulWidget {
   State<StatefulWidget> createState() => AssetState(this._index, this._asset);
 }
 
+
+
 class AssetState extends State<AssetView> {
   int _index = 0;
   Asset _asset;
 
-  //final Map<String, List<String>> uploadedImagesData = new Map();
-  //final List<dynamic> finalData=new List();
 
   AssetState(this._index, this._asset);
 
@@ -39,8 +43,9 @@ class AssetState extends State<AssetView> {
   void _uploadImages() async {}
 
   void _loadImage() async {
+    var response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Uri uri = Uri.parse('http://testapi.lbb.in:3000/media');
+    Uri uri = Uri.parse('http://testapi.lbb.in:4000/media');
     var request = http.MultipartRequest("POST", uri);
     request.headers['authorization'] = getAccessToken(prefs);
     ByteData byteData = await this._asset.requestOriginal();
@@ -53,38 +58,23 @@ class AssetState extends State<AssetView> {
       contentType: MediaType("image", "jpg"),
     );
     request.files.add(multipartfile);
-    var response = await request.send();
+    response = await request.send();
     String responseData = await response.stream
         .transform(utf8.decoder)
         .join(); // decodes on response data using UTF8.decoder
     //print(responseData);
     Map data = (json.decode(responseData)); // Parse data from JSON string
-    //print(data);
-    //var source = data['source'];
-    //var dataID = data['id'];
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 ) {
       await finalData.add(data);
+      /*this._asset.setImageUploaded();*/
+      //this._asset.isUploaded;
     }
-    //finalData.add(dataID);
     print(finalData);
-    //print(source + "  " + dataID);
     this._asset.releaseOriginal();
-    /*var ifEmpty = () {
-      var list = new List(1);
-      list[0] = source;
-      return list;
-    };*/
-    /*if(uploadedImagesData.containsKey("source")){
-      var currentSource = uploadedImagesData["source"];
-      currentSource.add(source);
-      uploadedImagesData.update("source",(List<String>)=>currentSource);
-    } else {
-      uploadedImagesData.putIfAbsent("source", ifEmpty);
-    }*/
-    //print(uploadedImagesData["source"]);
     print(response.statusCode);
     if (response.statusCode != 200) {
       print("Error Uploading");
+      //this._asset.setImageNotUploaded();
     } else {
       await this._asset.requestThumbnail(300, 300, quality: 50);
     }
