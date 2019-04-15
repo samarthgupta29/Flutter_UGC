@@ -1,15 +1,5 @@
 import 'dart:io';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'UGC_Form.dart';
-import 'package:multi_image_picker_example/requestLoginAPI.dart';
-import 'package:multi_image_picker_example/platformScaffold.dart';
-import 'package:multi_image_picker_example/basicDrawer.dart';
-import 'UGC_Onboarding.dart';
 import 'package:multi_image_picker_example/requestLoginAPI.dart';
 
 void main() {
@@ -51,6 +41,8 @@ class _UGC_LoginState extends State<UGC_Login> {
       child: new Scaffold(
           key: _scaffoldKey,
           appBar: AppBar(
+            title: new Text("LBB - Internal"),
+            centerTitle:true,
             backgroundColor: Colors.teal,
             automaticallyImplyLeading: false,
           ),
@@ -111,7 +103,6 @@ class _UGC_LoginState extends State<UGC_Login> {
                         height: 40.0,
                         child: Material(
                           borderRadius: BorderRadius.circular(20.0),
-                          //shadowColor: Colors.greenAccent,
                           color: Colors.teal,
                           elevation: 7.0,
                           child: InkWell(

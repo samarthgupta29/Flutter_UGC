@@ -27,7 +27,6 @@ class UGC_DiscoveriesHome extends StatefulWidget {
 
 class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  //String url = "http://testapi.lbb.in:4000/panther/discoveries?search_by_author=5c6fefa5f6479945b8f6a442";
   List data1;
   Future<String> makeRequest() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

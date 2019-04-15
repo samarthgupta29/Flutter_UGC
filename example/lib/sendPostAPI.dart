@@ -17,11 +17,11 @@ Future sendPostAPI(BuildContext context, String TitleOfPost, String Place,
   print("Bearer" + " " + pref.getString("auth_token"));
 
   Map body = {
-    "publish_status":"draft",
+    "publish_status": "draft",
     "curation_status": "curated",
     "curated": true,
-    "flag":"In-progress",
-    "mode":"Private",
+    "flag": "In-progress",
+    "mode": "Private",
     "custom_place": {"name": Place, "type": "Place"},
     "place_type": "custom_place",
     "provider": pref.getString("provider_city"),

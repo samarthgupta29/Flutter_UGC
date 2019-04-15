@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 import 'UGC_DiscoveriesHome.dart';
 import 'globallist.dart';
+
 void main() {
   runApp(UGC_SuccessPost1());
 }
@@ -17,7 +18,6 @@ class UGC_SuccessPost1 extends StatelessWidget {
 }
 
 class UGC_SuccessPost extends StatefulWidget {
-
   @override
   _UGC_SuccessPostState createState() => _UGC_SuccessPostState();
 }
@@ -31,8 +31,8 @@ class _UGC_SuccessPostState extends State<UGC_SuccessPost>
   void initState() {
     finalData.clear();
     super.initState();
-    animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 500));
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     animation =
         Tween<double>(begin: 20.0, end: 100.0).animate(animationController);
     animation.addListener(() {
@@ -45,7 +45,7 @@ class _UGC_SuccessPostState extends State<UGC_SuccessPost>
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: (){
+      onWillPop: () {
         moveToDiscoveriesHome();
       },
       child: new Scaffold(
@@ -75,16 +75,21 @@ class _UGC_SuccessPostState extends State<UGC_SuccessPost>
               padding: const EdgeInsets.only(top: 25.0),
               child: new Container(
                 child: InkWell(
-                  onTap: (){
-                    Navigator.push(context, new MaterialPageRoute(builder: (context)=>new UGC_DiscoveriesHome()));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new UGC_DiscoveriesHome()));
                   },
                   child: new Text(
-                    "Back To Discoveries...",style:TextStyle(color: Colors.blueAccent,decoration: TextDecoration.underline),
+                    "Back To Discoveries...",
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        decoration: TextDecoration.underline),
                   ),
                 ),
               ),
             ),
-
           ],
         ),
       ),
@@ -99,7 +104,7 @@ class _UGC_SuccessPostState extends State<UGC_SuccessPost>
   }
 
   void moveToDiscoveriesHome() {
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => new UGC_DiscoveriesHome()));
+    Navigator.push(context,
+        new MaterialPageRoute(builder: (context) => new UGC_DiscoveriesHome()));
   }
 }
