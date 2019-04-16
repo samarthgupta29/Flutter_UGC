@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
-
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:multi_image_picker_example/platformScaffold.dart';
-import 'package:multi_image_picker_example/basicDrawer.dart';
 import 'package:multi_image_picker_example/sendPostAPI.dart';
 import 'package:multi_image_picker_example/globallist.dart';
 
