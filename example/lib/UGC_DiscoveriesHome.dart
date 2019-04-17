@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'UGC_Image.dart';
-import 'UGC_Login.dart';
+import 'main.dart';
 
 void main() {
   runApp(UGC_DiscoveriesHome1());
