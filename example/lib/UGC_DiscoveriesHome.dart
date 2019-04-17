@@ -31,7 +31,7 @@ class _UGC_DiscoveriesHomeState extends State<UGC_DiscoveriesHome> {
   Future<String> makeRequest() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var response = await http.get(Uri.encodeFull(
-        "http://testapi.lbb.in:4000/panther/discoveries?search_by_author=${prefs.getString("userMongoId")}"));
+        "http://api.lbb.in/panther/discoveries?search_by_author=${prefs.getString("userMongoId")}"));
 
     setState(() {
       var extractData = json.decode(response.body);

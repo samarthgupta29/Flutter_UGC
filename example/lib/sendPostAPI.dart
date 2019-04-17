@@ -53,7 +53,7 @@ Future sendPostAPI(BuildContext context, String TitleOfPost, String Place,
     "title": TitleOfPost
   };
 
-  final response = await http.post("http://testapi.lbb.in:3000/discoveries",
+  final response = await http.post("http://api.lbb.in/discoveries",
       headers: {
         "Authorization": getAccessToken(pref),
         "client_id": "android",

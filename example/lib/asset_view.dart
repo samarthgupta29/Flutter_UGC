@@ -45,7 +45,7 @@ class AssetState extends State<AssetView> {
   void _loadImage() async {
     var response;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Uri uri = Uri.parse('http://testapi.lbb.in:4000/media');
+    Uri uri = Uri.parse('http://api.lbb.in/media');
     var request = http.MultipartRequest("POST", uri);
     request.headers['authorization'] = getAccessToken(prefs);
     ByteData byteData = await this._asset.requestOriginal();

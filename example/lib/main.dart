@@ -1,16 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:flutter/services.dart';
-import 'package:http_parser/http_parser.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
-import 'asset_view.dart';
-import 'package:http/http.dart' as http;
-import 'package:path/path.dart';
-import 'package:multi_image_picker/asset.dart' as asset;
-import 'asset_view.dart';
-import 'package:multi_image_picker_example/asset_view.dart' as asset;
-import 'UGC_Login.dart';
 import 'package:multi_image_picker_example/requestLoginAPI.dart';
 
 
